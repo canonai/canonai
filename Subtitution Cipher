@@ -1,0 +1,35 @@
+import random
+import string
+
+alphabet = list(string.ascii_lowercase + string.ascii_uppercase + string.punctuation + string.digits + " ")
+
+
+def generate_key(alphabet):
+    shuffled_alphabet = alphabet.copy()
+    random.shuffle(shuffled_alphabet)
+    return shuffled_alphabet
+
+
+def encrypt(text, key, alphabet):
+    encrypted = [key[alphabet.index(c)] for c in text]
+    return ''.join(encrypted)
+
+
+def decrypt(text, key, alphabet):
+    decrypted = [alphabet[key.index(c)] for c in text]
+    return ''.join(decrypted)
+
+
+generated_key = generate_key(alphabet)
+
+print(generated_key)
+
+message = 'Nanti Kita Serang Mereka'
+
+encrypted_message = encrypt(message, generated_key, alphabet)
+
+print(encrypted_message)
+
+decrypted_message = decrypt(encrypted_message, generated_key, alphabet)
+
+print(decrypted_message)
